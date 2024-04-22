@@ -7,10 +7,10 @@ export class Artist extends BaseEntity {
     id: number;
 
     @Column()
-    firstName: string;
+    first_name: string;
 
     @Column()
-    lastName: string;
+    last_name: string;
 
     @OneToMany(type => Track, track => track.album)
     tracks: Track[];
