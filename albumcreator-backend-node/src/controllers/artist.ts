@@ -40,3 +40,7 @@ export const artistExists = async (id: number): Promise<boolean> => {
   const artist = await Artist.findOne({ where: { id: id }});
   return !!artist;
 };
+
+export const getArtistById = async (id: number): Promise<Artist | null> => {
+  return await Artist.findOne({ where: { id: id }});
+};

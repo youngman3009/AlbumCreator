@@ -19,6 +19,7 @@ services:
     build:
       context: ./albumcreator-backend-node
       dockerfile: Dockerfile
+    restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}

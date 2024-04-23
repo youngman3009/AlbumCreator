@@ -15,3 +15,7 @@ export const genreExists = async (id: number): Promise<boolean> => {
   const genre = await Genre.findOne({ where: { id: id }});
   return !!genre;
 };
+
+export const getGenreById = async (id: number): Promise<Genre | null> => {
+  return await Genre.findOne({ where: { id: id }});
+};
