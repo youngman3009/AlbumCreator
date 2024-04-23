@@ -10,3 +10,8 @@ export const getGenres = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export const genreExists = async (id: number): Promise<boolean> => {
+  const genre = await Genre.findOne({ where: { id: id }});
+  return !!genre;
+};

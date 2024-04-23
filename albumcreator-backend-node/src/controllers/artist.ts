@@ -35,3 +35,8 @@ export const createArtist = async (req: Request, res: Response) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export const artistExists = async (id: number): Promise<boolean> => {
+  const artist = await Artist.findOne({ where: { id: id }});
+  return !!artist;
+};
