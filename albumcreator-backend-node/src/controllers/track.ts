@@ -51,7 +51,9 @@ export const createTrack = async (req: Request<{}, {}, TrackRequest>, res: Respo
 
 export const getTracks = async (req: Request, res: Response) => {
   try {
-    const tracks = await Track.find();
+    const tracks = await Track.find({
+      relations: ['artist', 'genre']
+    });
     return res.json(tracks);
   } catch (error) {
     console.error('Error getting tracks:', error);

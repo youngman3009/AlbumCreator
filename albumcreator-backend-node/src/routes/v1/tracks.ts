@@ -9,6 +9,7 @@ router.get('/', getTracks);
 // Create new track
 router.post('/', createTrack);
 
+// Update track
 router.put('/:trackId', updateTrack)
 
 export { router as trackRouter };
