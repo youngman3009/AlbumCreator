@@ -1,5 +1,5 @@
 import express from 'express';
-import { getGenres } from 'src/controllers/genre';
+import { getGenres } from '../../controllers/genre';
 
 const router = express.Router();
 

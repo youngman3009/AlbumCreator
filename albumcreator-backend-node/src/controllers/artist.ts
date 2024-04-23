@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Artist } from 'src/models/artist';
+import { Artist } from '../models/artist';
 
 export const getArtists = async (req: Request, res: Response) => {
   try {

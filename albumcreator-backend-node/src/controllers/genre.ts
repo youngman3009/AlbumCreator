@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Genre } from 'src/models/genre';
+import { Genre } from '../models/genre';
 
 export const getGenres = async (req: Request, res: Response) => {
   try {

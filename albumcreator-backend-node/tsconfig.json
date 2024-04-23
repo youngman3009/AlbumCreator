@@ -11,8 +11,10 @@
 			"es2017",
 			"esnext.asynciterable"
 		],
+		"preserveSymlinks": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
+		"rootDir": "./src",
 		"outDir": "./dist",
 		"moduleResolution": "node",
 		"removeComments": true,
@@ -29,8 +31,8 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"resolveJsonModule": true,
-		"baseUrl": "."
+		"baseUrl": "./src/"
 	},
-	"exclude": ["node_modules"],
+	"exclude": ["node_modules", "dist"],
 	"include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }
