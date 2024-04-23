@@ -9,6 +9,6 @@ export class Genre extends BaseEntity {
     @Column()
     name: string;
 
-    @OneToMany(type => Track, track => track.album)
+    @OneToMany(type => Track, track => track.genre)
     tracks: Track[];
 }

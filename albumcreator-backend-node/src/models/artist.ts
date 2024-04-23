@@ -12,6 +12,6 @@ export class Artist extends BaseEntity {
     @Column()
     last_name: string;
 
-    @OneToMany(type => Track, track => track.album)
+    @OneToMany(type => Track, track => track.artist)
     tracks: Track[];
 }

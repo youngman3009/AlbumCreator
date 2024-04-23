@@ -1,4 +1,4 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany } from "typeorm";
+import { Entity, BaseEntity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinColumn } from "typeorm";
 import { Album } from "./album";
 import { Artist } from "./artist";
 import { Genre } from "./genre";
@@ -12,9 +12,11 @@ export class Track extends BaseEntity {
     name: string;
 
     @ManyToOne(type => Artist, artist => artist.tracks)
+    @JoinColumn({ name: 'artist_id' })
     artist: Artist;
 
     @ManyToOne(type => Genre, genre => genre.tracks)
+    @JoinColumn({ name: 'genre_id' })
     genre: Genre;
 
     @ManyToMany(type => Album, album => album.tracks)
