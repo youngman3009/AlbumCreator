@@ -1,4 +1,4 @@
-import { getAlbums } from '../../controllers/album';
+import { getAlbum, getAlbums } from '../../controllers/album';
 import express from 'express';
 
 const router = express.Router();
@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', getAlbums);
 
 // Get all tracks for album
+router.get('/:albumId', getAlbum)
 
 // Create new album
 
