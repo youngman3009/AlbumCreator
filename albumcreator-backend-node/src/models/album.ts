@@ -10,6 +10,10 @@ export class Album extends BaseEntity {
     name: string;
 
     @ManyToMany(type => Track)
-    @JoinTable()
+    @JoinTable({ 
+        name: "album_track",
+        joinColumn: { name: "album_id" },
+        inverseJoinColumn: { name: "track_id" } 
+    })
     tracks: Track[];
 }
