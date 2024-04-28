@@ -44,13 +44,13 @@ export const createAlbum = async (req: Request<{}, {}, { name: string }>, res: R
 export const addTrackToAlbum = async (req: Request<{ albumId: number; trackId: number }, {}, {}>, res: Response) => {
   try {
     const { albumId, trackId } = req.params;
-    const album = await Album.findOne({ where: { id: albumId } });
+    const album = await Album.findOne({ where: { id: albumId }, relations: ['tracks'] });
     if (!album) return res.status(404).json({ error: 'Album not found' });
 
     const track = await Track.findOne({ where: { id: trackId } });
     if (!track) return res.status(404).json({ error: 'Track not found' });
 
-    const isTrackAlreadyAdded = album.tracks.some(existingTrack => existingTrack.id === trackId);
+    const isTrackAlreadyAdded = album.tracks.some(existingTrack => existingTrack.id == trackId);
     if (isTrackAlreadyAdded) return res.status(400).json({ error: 'Track is already on the album' });
 
     album.tracks.push(track);
@@ -68,7 +68,7 @@ export const deleteTracksFromAlbum = async (req: Request<{ albumId: number }, {}
     const { albumId } = req.params;
     const { track_ids } = req.body;
 
-    const album = await Album.findOne({ where: { id: albumId }, relations:  ['tracks'] });
+    const album = await Album.findOne({ where: { id: albumId }, relations: ['tracks'] });
     if (!album) return res.status(404).json({ error: 'Album not found' });
     console.log(album);
 
