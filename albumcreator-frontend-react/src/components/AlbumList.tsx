@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { getAlbums } from '../services/api';
 import { AlbumContext } from '../contexts';
+import { Link } from 'react-router-dom';
 
 const AlbumList: React.FC = () => { 
   const [isLoading, setIsLoading] = useState(false); 
@@ -30,11 +31,26 @@ const AlbumList: React.FC = () => {
       {isLoading && <p>Loading...</p>} 
       {error && <p className="error">{error}</p>}
       {!isLoading && !error && (
-        <ul>
-          {albums.map((album) => (
-            <li key={album.id}>{album.name}</li>
-          ))}
-        </ul>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {albums.map((album) => (
+                <tr key={album.id}>
+                <td>{album.name}</td>
+                <td>
+                  <Link to={`/albums/${album.id}`}><button>View</button></Link>
+                </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
