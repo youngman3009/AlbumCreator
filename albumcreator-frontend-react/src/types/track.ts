@@ -17,3 +17,11 @@ export const trackSchema = z.object({
   genre: genreSchema,
   artist: artistSchema,
 });
+
+export interface TrackDetailed extends z.infer<typeof trackSchema> {}
+
+export interface Track {
+  name: string;
+  genre_id: number;
+  artist_id: number;
+}
