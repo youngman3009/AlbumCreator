@@ -55,6 +55,13 @@ export const createTrack = async (newTrackData: Track) => {
   }
 };
 
+export const addTrackToAlbum = async (trackId: number, albumId: number) => {
+  const response = await instance.put(`/albums/${albumId}/tracks/${trackId}`);
+  if (!isSuccessfulResponse(response.status)) {
+    throw new Error(`Request failed with status code: ${response.status}`);
+  }
+};
+
 export const getArtists = async () => {
   const response = await instance.get('/artists');
   if (!isSuccessfulResponse(response.status)) {

@@ -9,3 +9,8 @@ export const albumListItemSchema = z.object({
 export const albumDetailSchema = albumListItemSchema.extend({
   tracks: z.array(trackSchema),
 });
+
+export interface Album { 
+  id: number;
+  name: string;
+}
