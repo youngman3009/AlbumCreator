@@ -32,6 +32,13 @@ export const getAlbumTracks = async (albumId: number) => {
   return parsedData;
 };
 
+export const deleteAlbum = async (albumId: number) => {
+  const response = await instance.delete(`/albums/${albumId}`);
+  if (!isSuccessfulResponse(response.status)) {
+    throw new Error(`Request failed with status code: ${response.status}`);
+  }
+};
+
 export const getTracks = async () => {
   const response = await instance.get('/tracks');
   if (!isSuccessfulResponse(response.status)) {

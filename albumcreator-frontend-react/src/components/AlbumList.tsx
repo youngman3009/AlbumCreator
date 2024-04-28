@@ -1,29 +1,40 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { getAlbums } from '../services/api';
+import { deleteAlbum, getAlbums } from '../services/api';
 import { AlbumContext } from '../contexts';
 import { Link } from 'react-router-dom';
 
 const AlbumList: React.FC = () => { 
   const [isLoading, setIsLoading] = useState(false); 
   const [error, setError] = useState<string | null>(null);
-
   const { albums, setAlbums } = useContext(AlbumContext);
 
-  useEffect(() => {
-    const fetchAlbums = async () => {
-      setIsLoading(true); 
-      try {
-        const data = await getAlbums();
-        setAlbums(data);
-      } catch (error) {
-        setError('Error fetching albums. Please try again.'); 
-      } finally {
-        setIsLoading(false); 
-      }
+  const fetchAlbums = async () => {
+    setIsLoading(true); 
+    try {
+      const data = await getAlbums();
+      setAlbums(data);
+    } catch (error) {
+      setError('Error fetching albums. Please try again.'); 
+    } finally {
+      setIsLoading(false); 
     }
+  }
 
+  useEffect(() => {
     fetchAlbums(); 
-  }, [setAlbums]);
+  }, []);
+
+  const handleDeleteAlbum = async (albumId: number) => {
+    setIsLoading(true);
+    try {
+      await deleteAlbum(albumId);
+      fetchAlbums()
+    } catch (error) {
+      setError('Failed to add track to album. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -45,6 +56,7 @@ const AlbumList: React.FC = () => {
                 <td>{album.name}</td>
                 <td>
                   <Link to={`/albums/${album.id}`}><button>View</button></Link>
+                  <button onClick={() => handleDeleteAlbum(album.id)}>Delete</button>
                 </td>
                 </tr>
               ))}
