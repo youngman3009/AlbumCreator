@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { trackSchema } from './track';
+import { TrackDetailed, trackSchema } from './track';
 
 export const albumListItemSchema = z.object({
   id: z.number(),
@@ -13,4 +13,10 @@ export const albumDetailSchema = albumListItemSchema.extend({
 export interface Album { 
   id: number;
   name: string;
+}
+
+export interface DetailedAlbum { 
+  id: number;
+  name: string;
+  tracks: TrackDetailed[]
 }
