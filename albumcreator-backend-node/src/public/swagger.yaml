@@ -1,0 +1,1227 @@
+openapi: 3.0.3
+info:
+  title: AlbumCreator
+  version: 1.0.0
+  contact: {}
+paths:
+  /api/v1/artists:
+    get:
+      tags:
+        - Artists
+      summary: Get Artists
+      description: Get Artists
+      operationId: getArtists
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '208'
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Apr 2024 21:25:25 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"d0-Hb91iaONo4/8+DvhMP+S/iWqgfo"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                      example: John
+                    id:
+                      type: number
+                      example: 1
+                    last_name:
+                      type: string
+                      example: Lennon
+                example:
+                  - first_name: John
+                    id: 1
+                    last_name: Lennon
+                  - first_name: Paul
+                    id: 2
+                    last_name: McCartney
+                  - first_name: George
+                    id: 3
+                    last_name: Harrison
+                  - first_name: Ringo
+                    id: 4
+                    last_name: Starr
+              examples:
+                Success:
+                  value:
+                    - first_name: John
+                      id: 1
+                      last_name: Lennon
+                    - first_name: Paul
+                      id: 2
+                      last_name: McCartney
+                    - first_name: George
+                      id: 3
+                      last_name: Harrison
+                    - first_name: Ringo
+                      id: 4
+                      last_name: Starr
+    post:
+      tags:
+        - Artists
+      summary: Create Artist
+      description: Create Artist
+      operationId: createArtist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: Joe
+            examples:
+              Create Artist:
+                value:
+                  first_name: Joe
+      responses:
+        '201':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '48'
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Apr 2024 21:27:09 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"30-jny/BlO2oKA8oHSG/p3jQ+ibKQw"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                    example: Joe
+                  id:
+                    type: number
+                    example: 5
+                  last_name:
+                    type: string
+                    example: Bloggs
+              examples:
+                Success:
+                  value:
+                    first_name: Joe
+                    id: 5
+                    last_name: Bloggs
+        '400':
+          description: Duplicate Error / Missing Required Fields Error
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '54'
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Apr 2024 21:30:02 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"36-51Vbjmg71Z74kWkE72ZoZPWC4To"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: >-
+                      Artist with the same first name and last name already
+                      exists
+              examples:
+                Duplicate Error:
+                  value:
+                    error: >-
+                      Artist with the same first name and last name already
+                      exists
+                Missing Required Fields Error:
+                  value:
+                    error: Both first_name and last_name are required
+  /api/v1/genres:
+    get:
+      tags:
+        - Genres
+      summary: Get Genres
+      description: Get Genres
+      operationId: getGenres
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '197'
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Apr 2024 21:24:14 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"c5-UNq56XDrxIceE6mvBzFOm8fHRYs"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 1
+                    name:
+                      type: string
+                      example: Rock
+                example:
+                  - id: 1
+                    name: Rock
+                  - id: 2
+                    name: Pop
+                  - id: 3
+                    name: Blues
+                  - id: 4
+                    name: Jazz
+                  - id: 5
+                    name: Hip Hop
+                  - id: 6
+                    name: Electronic
+                  - id: 7
+                    name: Country
+                  - id: 8
+                    name: Folk
+              examples:
+                Success:
+                  value:
+                    - id: 1
+                      name: Rock
+                    - id: 2
+                      name: Pop
+                    - id: 3
+                      name: Blues
+                    - id: 4
+                      name: Jazz
+                    - id: 5
+                      name: Hip Hop
+                    - id: 6
+                      name: Electronic
+                    - id: 7
+                      name: Country
+                    - id: 8
+                      name: Folk
+  /api/v1/tracks:
+    get:
+      tags:
+        - Tracks
+      summary: Get Tracks
+      description: Get Tracks
+      operationId: getTracks
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '742'
+            Date:
+              schema:
+                type: string
+                example: Sun, 28 Apr 2024 13:48:56 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"2e6-uYEQFLVu2iNQxsps/kTA5si2Pro"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    artist:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                          example: Paul
+                        id:
+                          type: number
+                          example: 2
+                        last_name:
+                          type: string
+                          example: McCartney
+                    genre:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                          example: 2
+                        name:
+                          type: string
+                          example: Pop
+                    id:
+                      type: number
+                      example: 4
+                    name:
+                      type: string
+                      example: Eleanor Rigby
+                example:
+                  - artist:
+                      first_name: Paul
+                      id: 2
+                      last_name: McCartney
+                    genre:
+                      id: 2
+                      name: Pop
+                    id: 4
+                    name: Eleanor Rigby
+                  - artist:
+                      first_name: John
+                      id: 1
+                      last_name: Lennon
+                    genre:
+                      id: 1
+                      name: Rock
+                    id: 5
+                    name: Blackbird
+                  - artist:
+                      first_name: John
+                      id: 1
+                      last_name: Lennon
+                    genre:
+                      id: 2
+                      name: Pop
+                    id: 6
+                    name: Hey Jude
+                  - artist:
+                      first_name: George
+                      id: 3
+                      last_name: Harrison
+                    genre:
+                      id: 1
+                      name: Rock
+                    id: 1
+                    name: Come Together
+                  - artist:
+                      first_name: John
+                      id: 1
+                      last_name: Lennon
+                    genre:
+                      id: 2
+                      name: Pop
+                    id: 2
+                    name: Yesterday
+                  - artist:
+                      first_name: Ringo
+                      id: 4
+                      last_name: Starr
+                    genre:
+                      id: 7
+                      name: Country
+                    id: 3
+                    name: While My Guitar Gently Weeps
+              examples:
+                Success:
+                  value:
+                    - artist:
+                        first_name: Paul
+                        id: 2
+                        last_name: McCartney
+                      genre:
+                        id: 2
+                        name: Pop
+                      id: 4
+                      name: Eleanor Rigby
+                    - artist:
+                        first_name: John
+                        id: 1
+                        last_name: Lennon
+                      genre:
+                        id: 1
+                        name: Rock
+                      id: 5
+                      name: Blackbird
+                    - artist:
+                        first_name: John
+                        id: 1
+                        last_name: Lennon
+                      genre:
+                        id: 2
+                        name: Pop
+                      id: 6
+                      name: Hey Jude
+                    - artist:
+                        first_name: George
+                        id: 3
+                        last_name: Harrison
+                      genre:
+                        id: 1
+                        name: Rock
+                      id: 1
+                      name: Come Together
+                    - artist:
+                        first_name: John
+                        id: 1
+                        last_name: Lennon
+                      genre:
+                        id: 2
+                        name: Pop
+                      id: 2
+                      name: Yesterday
+                    - artist:
+                        first_name: Ringo
+                        id: 4
+                        last_name: Starr
+                      genre:
+                        id: 7
+                        name: Country
+                      id: 3
+                      name: While My Guitar Gently Weeps
+    post:
+      tags:
+        - Tracks
+      summary: Create Track
+      description: Create Track
+      operationId: createTrack
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                artist_id:
+                  type: number
+                  example: 1
+                genre_id:
+                  type: number
+                  example: 1
+                name:
+                  type: string
+                  example: My Song
+            examples:
+              Create Track:
+                value:
+                  artist_id: 1
+                  genre_id: 1
+                  name: My Song
+      responses:
+        '201':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '60'
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Apr 2024 22:58:59 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"3c-zKdhxO4vVGrRONG53CXAj90wPzE"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  artist:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 1
+                  genre:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 1
+                  id:
+                    type: number
+                    example: 8
+                  name:
+                    type: string
+                    example: My Song
+              examples:
+                Success:
+                  value:
+                    artist:
+                      id: 1
+                    genre:
+                      id: 1
+                    id: 8
+                    name: My Song
+  /api/v1/tracks/{trackId}:
+    put:
+      tags:
+        - Tracks
+      summary: Update Track
+      description: Update Track
+      operationId: updateTrack
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                genre_id:
+                  type: number
+                  example: 2
+                name:
+                  type: string
+                  example: My Song 2
+            examples:
+              Update Track:
+                value:
+                  genre_id: 2
+                  name: My Song 2
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '57'
+            Date:
+              schema:
+                type: string
+                example: Tue, 23 Apr 2024 22:56:52 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"39-FgoXW1V+AresTV3rqrgfs2eGFsA"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  genre:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                        example: 2
+                      name:
+                        type: string
+                        example: Pop
+                  id:
+                    type: number
+                    example: 7
+                  name:
+                    type: string
+                    example: My Song 2
+              examples:
+                Success:
+                  value:
+                    genre:
+                      id: 2
+                      name: Pop
+                    id: 7
+                    name: My Song 2
+    parameters:
+      - name: trackId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '7'
+  /api/v1/albums:
+    get:
+      tags:
+        - Albums
+      summary: Get Albums
+      description: Get Albums
+      operationId: getAlbums
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '91'
+            Date:
+              schema:
+                type: string
+                example: Wed, 24 Apr 2024 01:50:33 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"5b-ukt8r9/+nxt8ptfnK455TQZ/T9Y"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 1
+                    name:
+                      type: string
+                      example: Abbey Road
+                example:
+                  - id: 1
+                    name: Abbey Road
+                  - id: 2
+                    name: Revolver
+                  - id: 3
+                    name: The White Album
+              examples:
+                Success:
+                  value:
+                    - id: 1
+                      name: Abbey Road
+                    - id: 2
+                      name: Revolver
+                    - id: 3
+                      name: The White Album
+    post:
+      tags:
+        - Albums
+      summary: Create Album
+      description: Create Album
+      operationId: createAlbum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Test Album
+            examples:
+              Create Album:
+                value:
+                  name: Test Album
+      responses:
+        '201':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '30'
+            Date:
+              schema:
+                type: string
+                example: Fri, 26 Apr 2024 00:12:10 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"1e-V6jSWVVXskRQGHnXt5Qy4mDj05c"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 5
+                  name:
+                    type: string
+                    example: Test Album 2
+              examples:
+                Success:
+                  value:
+                    id: 5
+                    name: Test Album 2
+        '400':
+          description: Name Not Unique Error
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '31'
+            Date:
+              schema:
+                type: string
+                example: Fri, 26 Apr 2024 00:11:37 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"1f-RfeSdLJPpKZAVfvRdMGEh4rph9E"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Name must be unique
+              examples:
+                Name Not Unique Error:
+                  value:
+                    error: Name must be unique
+  /api/v1/albums/{albumId}/tracks:
+    get:
+      tags:
+        - Albums
+      summary: Get Album
+      description: Get Album
+      operationId: getAlbum
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '423'
+            Date:
+              schema:
+                type: string
+                example: Wed, 24 Apr 2024 02:07:41 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"1a7-TbyXDAQVz+bqyIx9Ejb2Nw6D/NA"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  name:
+                    type: string
+                    example: Abbey Road
+                  tracks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        artist:
+                          type: object
+                          properties:
+                            first_name:
+                              type: string
+                              example: John
+                            id:
+                              type: number
+                              example: 1
+                            last_name:
+                              type: string
+                              example: Lennon
+                        genre:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                              example: 1
+                            name:
+                              type: string
+                              example: Rock
+                        id:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: Come Together
+                    example:
+                      - artist:
+                          first_name: John
+                          id: 1
+                          last_name: Lennon
+                        genre:
+                          id: 1
+                          name: Rock
+                        id: 1
+                        name: Come Together
+                      - artist:
+                          first_name: Paul
+                          id: 2
+                          last_name: McCartney
+                        genre:
+                          id: 2
+                          name: Pop
+                        id: 2
+                        name: Yesterday
+                      - artist:
+                          first_name: George
+                          id: 3
+                          last_name: Harrison
+                        genre:
+                          id: 3
+                          name: Blues
+                        id: 3
+                        name: While My Guitar Gently Weeps
+              examples:
+                Success:
+                  value:
+                    id: 1
+                    name: Abbey Road
+                    tracks:
+                      - artist:
+                          first_name: John
+                          id: 1
+                          last_name: Lennon
+                        genre:
+                          id: 1
+                          name: Rock
+                        id: 1
+                        name: Come Together
+                      - artist:
+                          first_name: Paul
+                          id: 2
+                          last_name: McCartney
+                        genre:
+                          id: 2
+                          name: Pop
+                        id: 2
+                        name: Yesterday
+                      - artist:
+                          first_name: George
+                          id: 3
+                          last_name: Harrison
+                        genre:
+                          id: 3
+                          name: Blues
+                        id: 3
+                        name: While My Guitar Gently Weeps
+    delete:
+      tags:
+        - Albums
+      summary: Delete Tracks From Album
+      description: Delete Tracks From Album
+      operationId: deleteTracksFromAlbum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                track_ids:
+                  type: array
+                  items:
+                    type: number
+                    example: 2
+                  example:
+                    - 2
+                    - 3
+            examples:
+              Delete Tracks From Album:
+                value:
+                  track_ids:
+                    - 2
+                    - 3
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '40'
+            Date:
+              schema:
+                type: string
+                example: Fri, 26 Apr 2024 01:41:57 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"28-46PjcTmwOz7HCpwzwaiqml7O+CA"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  name:
+                    type: string
+                    example: Abbey Road
+                  tracks:
+                    type: array
+                    items: {}
+                    example: []
+              examples:
+                Success:
+                  value:
+                    id: 1
+                    name: Abbey Road
+                    tracks: []
+    parameters:
+      - name: albumId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '1'
+  /api/v1/albums/{albumId}/tracks/{trackId}:
+    put:
+      tags:
+        - Albums
+      summary: Add Track To Album
+      description: Add Track To Album
+      operationId: addTrackToAlbum
+      responses:
+        '200':
+          description: Success
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '178'
+            Date:
+              schema:
+                type: string
+                example: Sun, 28 Apr 2024 17:42:01 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"b2-qq3PMnf0JXF/zcYElLysA4wQDbY"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  name:
+                    type: string
+                    example: Abbey Road
+                  tracks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                          example: 1
+                        name:
+                          type: string
+                          example: Come Together
+                    example:
+                      - id: 1
+                        name: Come Together
+                      - id: 2
+                        name: Yesterday
+                      - id: 3
+                        name: While My Guitar Gently Weeps
+                      - id: 4
+                        name: Eleanor Rigby
+              examples:
+                Success:
+                  value:
+                    id: 1
+                    name: Abbey Road
+                    tracks:
+                      - id: 1
+                        name: Come Together
+                      - id: 2
+                        name: Yesterday
+                      - id: 3
+                        name: While My Guitar Gently Weeps
+                      - id: 4
+                        name: Eleanor Rigby
+        '400':
+          description: Track Already On Album
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '41'
+            Date:
+              schema:
+                type: string
+                example: Sun, 28 Apr 2024 17:41:10 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"29-M1X9Oi0c0vKLyn0GRgu3SgxPczI"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Track is already on the album
+              examples:
+                Track Already On Album:
+                  value:
+                    error: Track is already on the album
+    parameters:
+      - name: albumId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '1'
+      - name: trackId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '4'
+  /api/v1/albums/{albumId}:
+    delete:
+      tags:
+        - Albums
+      summary: Delete Album
+      description: Delete Album
+      operationId: deleteAlbum
+      responses:
+        '200':
+          description: Success
+          headers:
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Content-Length:
+              schema:
+                type: string
+                example: '40'
+            Date:
+              schema:
+                type: string
+                example: Fri, 26 Apr 2024 01:42:50 GMT
+            ETag:
+              schema:
+                type: string
+                example: W/"28-WUJ6MH5hfZOfmRzMM8TOBBcYVp4"
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Album deleted successfully
+              examples:
+                Success:
+                  value:
+                    message: Album deleted successfully
+    parameters:
+      - name: albumId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: '2'
+tags:
+  - name: Artists
+  - name: Genres
+  - name: Tracks
+  - name: Albums
