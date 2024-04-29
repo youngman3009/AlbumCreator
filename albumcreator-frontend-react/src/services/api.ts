@@ -4,10 +4,8 @@ import { BaseAlbum, albumDetailSchema, albumListItemSchema } from '../types/albu
 import { Track, artistSchema, genreSchema, trackSchema } from '../types/track';
 
 
-const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST;
-const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
 const instance = axios.create({
-  baseURL: `http://${BACKEND_HOST}:${BACKEND_PORT}/api/v1`, 
+  baseURL: `${window.location.origin}/api/v1`, 
 });
 
 const isSuccessfulResponse = (status: number) => status >= 200 && status < 300;
