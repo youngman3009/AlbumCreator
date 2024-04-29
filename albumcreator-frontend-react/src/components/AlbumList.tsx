@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { deleteAlbum, getAlbums } from '../services/api';
 import { AlbumContext } from '../contexts';
 import { Link } from 'react-router-dom';
+import AlbumForm from './AlbumForm';
 
 const AlbumList: React.FC = () => { 
   const [isLoading, setIsLoading] = useState(false); 
   const [error, setError] = useState<string | null>(null);
+  const [showCreateForm, setShowCreateForm] = useState(false);
   const { albums, setAlbums } = useContext(AlbumContext);
 
   const fetchAlbums = async () => {
@@ -43,6 +45,15 @@ const AlbumList: React.FC = () => {
       {error && <p className="error">{error}</p>}
       {!isLoading && !error && (
         <div>
+          <button onClick={() => setShowCreateForm(true)}>Add New Album</button>
+          {showCreateForm && (
+            <AlbumForm 
+              onSuccess={() => { 
+                setShowCreateForm(false);
+                fetchAlbums();
+              }}
+            />
+          )}
           <table>
             <thead>
               <tr>
