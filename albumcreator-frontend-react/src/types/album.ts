@@ -10,12 +10,16 @@ export const albumDetailSchema = albumListItemSchema.extend({
   tracks: z.array(trackSchema),
 });
 
-export interface Album { 
+export interface BaseAlbum {
+  name: string;
+}
+
+export interface Album extends BaseAlbum { 
   id: number;
   name: string;
 }
 
-export interface DetailedAlbum { 
+export interface DetailedAlbum extends Album { 
   id: number;
   name: string;
   tracks: TrackDetailed[]
