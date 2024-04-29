@@ -37,7 +37,7 @@ This project allows users to create and manage music albums and tracks within a 
 
 1. Clone the repository:
     ```bash
-    git clone [https://github.com/youngman3009/AlbumCreator.git](https://github.com/youngman3009/AlbumCreator.git)
+    git clone https://github.com/youngman3009/AlbumCreator.git
 2. Create a `.env` file in the root of the project with the following values:
     * POSTGRES_DB=_Database name_
     * POSTGRES_USER=_Database user to use_
