@@ -39,6 +39,13 @@ export const deleteAlbum = async (albumId: number) => {
   }
 };
 
+export const deleteAlbumTracks = async (albumId: number, trackIds: number[]) => {
+  const response = await instance.delete(`/albums/${albumId}/tracks`, { data: { track_ids: trackIds } });
+  if (!isSuccessfulResponse(response.status)) {
+    throw new Error(`Request failed with status code: ${response.status}`);
+  }
+};
+
 export const createAlbum = async (newAlbumData: BaseAlbum) => {
   const response = await instance.post('/albums', newAlbumData);
   if (!isSuccessfulResponse(response.status)) {
